@@ -1,9 +1,7 @@
 /*
   Seminario de Informatica y Telecomunicaciones
   Clase 11/4 - TP Maquina de Estados Reloj - Ejercicio 1
-
   Hecho por Santiago Rapetti y Ariel Slonimsqui.
-
   Comentarios: La hora esta inicializada en 0 horas y 0 minutos.
 */
 
@@ -132,12 +130,12 @@ void maquinaDeEstados() {
 
       pantalla2();
 
-      if (estadoSwitch1 == LOW) {
+      if (estadoSwitch2 == LOW) {
 
         estadoMaquina = 3;
       }
 
-      if (estadoSwitch2 == LOW) {
+      if (estadoSwitch1 == LOW) {
 
         estadoMaquina = 4;
       }
@@ -157,7 +155,7 @@ void maquinaDeEstados() {
         estadoMaquina = 5;
       }
 
-      if (estadoSwitch1 == HIGH) {
+      if (estadoSwitch2 == HIGH) {
         minutos = minutos + 1;
 
         estadoMaquina = 2;
@@ -170,7 +168,7 @@ void maquinaDeEstados() {
 
       pantalla2();
 
-      if (estadoSwitch2 == HIGH) {
+      if (estadoSwitch1 == HIGH) {
         hora = hora + 1;
 
         estadoMaquina = 2;
