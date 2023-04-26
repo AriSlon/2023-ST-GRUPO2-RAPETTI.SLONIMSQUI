@@ -1,8 +1,7 @@
 /*
   Seminario de Informatica y Telecomunicaciones
-  Clase 11/4 - TP Maquina de Estados Reloj - Ejercicio 1
+  Clase 25/4 - TP Opcional Riego
   Hecho por Santiago Rapetti y Ariel Slonimsqui.
-  Comentarios: La hora esta inicializada en 0 horas y 0 minutos.
 */
 
 #include <Wire.h>
