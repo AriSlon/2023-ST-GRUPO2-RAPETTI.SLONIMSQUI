@@ -2,7 +2,6 @@
   Seminario de Informatica y Telecomunicaciones
   Clase 25/4 - TP Opcional Riego
   Hecho por Santiago Rapetti y Ariel Slonimsqui.
-
 */
 
 #include <Wire.h>
@@ -350,7 +349,9 @@ void pantalla3() {
   display.setTextSize(1);
   display.setTextColor(WHITE);
   display.setCursor(0, 0);
-  display.print("Tiempo de Riego: ");
+  display.print("Tiempo Riego: ");
   display.print(tiempoRiego);
+  display.println(" segs");
+
   display.display();
 }
