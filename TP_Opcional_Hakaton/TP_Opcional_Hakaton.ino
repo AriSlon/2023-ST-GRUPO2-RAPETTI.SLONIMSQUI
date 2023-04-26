@@ -2,6 +2,7 @@
   Seminario de Informatica y Telecomunicaciones
   Clase 25/4 - TP Opcional Riego
   Hecho por Santiago Rapetti y Ariel Slonimsqui.
+
 */
 
 #include <Wire.h>
@@ -325,7 +326,8 @@ void pantalla1() {
 
   display.println();
   display.print("Ciclo: ");
-  display.print(intervaloRiego);
+  display.print(intervaloRiego / 60);
+  display.println(" minuto/s");
   display.display();
 
 }
@@ -338,7 +340,7 @@ void pantalla2() {
   display.setCursor(0, 0);
   display.print("Ciclo: ");
   display.print(intervaloRiego / 60);
-  display.println(" minutos");
+  display.println(" minuto/s");
   display.display();
 }
 
