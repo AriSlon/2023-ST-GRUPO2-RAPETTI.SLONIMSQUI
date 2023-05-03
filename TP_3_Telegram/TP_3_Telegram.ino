@@ -1,3 +1,10 @@
+/*
+  Seminario de Informatica y Telecomunicaciones
+  Clase 2/5 - TP 3 Telegram
+  Hecho por Santiago Rapetti y Ariel Slonimsqui.
+  Comentario: El codigo puede andar lento por momentos y, por ejemplo, tardar en cambiar de estados.
+*/
+
 #include <Wire.h>
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
