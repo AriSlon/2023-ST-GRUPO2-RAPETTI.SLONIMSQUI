@@ -70,6 +70,8 @@ void setup() {
 
 void loop() {
 
+  Serial.println(estadoMaquina);
+
   estadoSwitch1 = digitalRead(SW_1);
   estadoSwitch2 = digitalRead(SW_2);
 
@@ -78,7 +80,7 @@ void loop() {
   milisActuales = millis(); // Guarda el tiempo en milisegundos desde que se inicio el programa
 
   if ((milisActuales - milisPrevios) >= 100) {
-  
+
     maquinaDeEstados();
     milisPrevios = milisActuales;
 
@@ -86,133 +88,133 @@ void loop() {
 
 }
 
-  void maquinaDeEstados() {
+void maquinaDeEstados() {
 
-    sensors_event_t event;
-    dht.temperature().getEvent(&event);
-    temp = event.temperature;
+  sensors_event_t event;
+  dht.temperature().getEvent(&event);
+  temp = event.temperature;
 
-    switch (estadoMaquina) {
+  switch (estadoMaquina) {
 
-      case PANTALLA_1:
+    case PANTALLA_1:
 
-        pantalla1();
+      pantalla1();
 
-        if (temp > valorUmbral) {
-          digitalWrite(RELAY, HIGH);
-        } else {
-          digitalWrite(RELAY, LOW);
-        }
-
-
-        if (estadoSwitch1 == LOW &&  estadoSwitch2 == LOW) {
-          estadoMaquina = 1;
-        }
-
-        break;
-
-      case ESPERA_1:
-
-        pantalla1();
-
-        if (estadoSwitch1 == HIGH &&  estadoSwitch2 == HIGH) {
-          estadoMaquina = 2;
-        }
-
-        break;
-
-      case PANTALLA_2:
-
-        pantalla2();
-
-        if (estadoSwitch1 == LOW) {
-
-          estadoMaquina = 3;
-        }
-
-        if (estadoSwitch2 == LOW) {
-
-          estadoMaquina = 4;
-        }
-
-        if (estadoSwitch1 == LOW && estadoSwitch2 == LOW) {
-          estadoMaquina = 5;
-        }
-
-        break;
-
-      case SUMA:
-
-        pantalla2();
+      if (temp > valorUmbral) {
+        digitalWrite(RELAY, HIGH);
+      } else {
+        digitalWrite(RELAY, LOW);
+      }
 
 
-        if (estadoSwitch1 == LOW && estadoSwitch2 == LOW) {
-          estadoMaquina = 5;
-        }
+      if (estadoSwitch1 == LOW &&  estadoSwitch2 == LOW) {
+        estadoMaquina = 1;
+      }
 
-        if (estadoSwitch1 == HIGH) {
-          valorUmbral = valorUmbral + 1;
+      break;
 
-          estadoMaquina = 2;
-        }
+    case ESPERA_1:
+
+      pantalla1();
+
+      if (estadoSwitch1 == HIGH &&  estadoSwitch2 == HIGH) {
+        estadoMaquina = 2;
+      }
+
+      break;
+
+    case PANTALLA_2:
+
+      pantalla2();
+
+      if (estadoSwitch1 == LOW) {
+
+        estadoMaquina = 3;
+      }
+
+      if (estadoSwitch2 == LOW) {
+
+        estadoMaquina = 4;
+      }
+
+      if (estadoSwitch1 == LOW && estadoSwitch2 == LOW) {
+        estadoMaquina = 5;
+      }
+
+      break;
+
+    case SUMA:
+
+      pantalla2();
 
 
-        break;
+      if (estadoSwitch1 == LOW && estadoSwitch2 == LOW) {
+        estadoMaquina = 5;
+      }
 
-      case RESTA:
+      if (estadoSwitch1 == HIGH) {
+        valorUmbral = valorUmbral + 1;
 
-        pantalla2();
+        estadoMaquina = 2;
+      }
 
-        if (estadoSwitch2 == HIGH) {
-          valorUmbral = valorUmbral - 1;
 
-          estadoMaquina = 2;
-        }
+      break;
 
-        if (estadoSwitch1 == LOW && estadoSwitch2 == LOW) {
-          estadoMaquina = 5;
-        }
+    case RESTA:
 
-        break;
+      pantalla2();
 
-      case ESPERA_2:
+      if (estadoSwitch2 == HIGH) {
+        valorUmbral = valorUmbral - 1;
 
-        pantalla2();
+        estadoMaquina = 2;
+      }
 
-        if ( estadoSwitch1 == HIGH && estadoSwitch2 == HIGH) {
-          estadoMaquina = 0;
-        }
+      if (estadoSwitch1 == LOW && estadoSwitch2 == LOW) {
+        estadoMaquina = 5;
+      }
 
-        break;
+      break;
 
-    }
-  }
+    case ESPERA_2:
 
-  void pantalla1() {
+      pantalla2();
 
-    sensors_event_t event;
-    dht.temperature().getEvent(&event);
-    temp = event.temperature;
+      if ( estadoSwitch1 == HIGH && estadoSwitch2 == HIGH) {
+        estadoMaquina = 0;
+      }
 
-    display.clearDisplay();
-    display.setTextSize(1);
-    display.setTextColor(WHITE);
-    display.setCursor(0, 0);
-    display.println("Temperatura Actual: ");
-    display.println(event.temperature);
-    display.println("Valor Umbral: ");
-    display.println(valorUmbral);
-    display.display();
-  }
-
-  void pantalla2() {
-
-    display.clearDisplay();
-    display.setTextSize(1);
-    display.setTextColor(WHITE);
-    display.setCursor(0, 0);
-    display.println("Valor Umbral: ");
-    display.println(valorUmbral);
-    display.display();
+      break;
 
   }
+}
+
+void pantalla1() {
+
+  sensors_event_t event;
+  dht.temperature().getEvent(&event);
+  temp = event.temperature;
+
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+  display.setCursor(0, 0);
+  display.println("Temperatura Actual: ");
+  display.println(event.temperature);
+  display.println("Valor Umbral: ");
+  display.println(valorUmbral);
+  display.display();
+}
+
+void pantalla2() {
+
+  display.clearDisplay();
+  display.setTextSize(1);
+  display.setTextColor(WHITE);
+  display.setCursor(0, 0);
+  display.println("Valor Umbral: ");
+  display.println(valorUmbral);
+  display.display();
+
+}
