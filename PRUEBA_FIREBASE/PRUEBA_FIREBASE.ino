@@ -17,8 +17,8 @@
 #include "addons/RTDBHelper.h"
 
 // Insert your network credentials
-#define WIFI_SSID "Ari"
-#define WIFI_PASSWORD "004367225aa"
+#define WIFI_SSID "ORT-IoT"
+#define WIFI_PASSWORD "OrtIOTnew22$2"
 
 // Insert Firebase project API Key
 #define API_KEY "AIzaSyCFqGtRI-i6us4ldknJVphgCKA-LFwKw_k"
